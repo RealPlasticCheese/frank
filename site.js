@@ -44,7 +44,9 @@ function renderExperience(container, roles) {
     }
 
     role.achievements.forEach((achievement) => {
-      achievementList.append(createElement("li", { text: achievement }));
+      const item = document.createElement("li");
+      item.innerHTML = achievement;
+      achievementList.append(item);
     });
 
     article.append(achievementList);
@@ -140,29 +142,45 @@ function setupSectionNav(navLinks) {
     });
   };
 
-  if (window.location.hash) {
-    setActiveLink(window.location.hash.slice(1));
-  } else if (sections[0]) {
-    setActiveLink(sections[0].id);
-  }
+  const getActiveSectionId = () => {
+    const lastSection = sections[sections.length - 1];
+    const scrollTop = window.scrollY;
+    const scrollBottom = window.scrollY + window.innerHeight;
+    const pageBottom = document.documentElement.scrollHeight;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visibleEntry = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
-
-      if (visibleEntry?.target.id) {
-        setActiveLink(visibleEntry.target.id);
-      }
-    },
-    {
-      rootMargin: "-20% 0px -55% 0px",
-      threshold: [0.15, 0.35, 0.6]
+    if (lastSection && scrollBottom >= pageBottom - 2) {
+      return lastSection.id;
     }
-  );
 
-  sections.forEach((section) => observer.observe(section));
+    let activeSection = sections[0];
+
+    for (let index = 0; index < sections.length - 1; index += 1) {
+      const currentSection = sections[index];
+      const nextSection = sections[index + 1];
+      const handoffPoint = currentSection.offsetTop + (nextSection.offsetTop - currentSection.offsetTop) / 2;
+
+      if (scrollTop >= handoffPoint) {
+        activeSection = nextSection;
+      } else {
+        break;
+      }
+    }
+
+    return activeSection?.id;
+  };
+
+  const syncActiveSection = () => {
+    const activeSectionId = getActiveSectionId();
+
+    if (activeSectionId) {
+      setActiveLink(activeSectionId);
+    }
+  };
+
+  syncActiveSection();
+  window.addEventListener("scroll", syncActiveSection, { passive: true });
+  window.addEventListener("resize", syncActiveSection);
+  window.addEventListener("hashchange", syncActiveSection);
 }
 
 const sideNav = document.querySelector(".side-nav");
