@@ -35,7 +35,7 @@ html {
 
 body {
   margin: 0;
-  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at top left, var(--accent-wash), transparent 30%),
@@ -56,6 +56,25 @@ a:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
   text-decoration: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+  transform: translateY(-200%);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-inverse);
+  font-weight: 700;
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-color: var(--focus-ring-inverse);
 }
 
 .site-shell {
@@ -125,9 +144,13 @@ a:focus-visible {
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
-.side-nav nav a:hover {
+.side-nav nav a:hover,
+.side-nav nav a[aria-current="true"] {
   background: var(--nav-hover);
   color: var(--text-inverse);
+}
+
+.side-nav nav a:hover {
   transform: translateX(2px);
 }
 
@@ -388,6 +411,7 @@ li + li {
     transition-duration: 0.01ms !important;
   }
 
+  .skip-link,
   .side-nav nav a:hover {
     transform: none;
   }
@@ -398,12 +422,13 @@ li + li {
     background: var(--surface);
   }
 
-  .site-shell {
-    display: block;
-  }
-
+  .skip-link,
   .side-nav {
     display: none;
+  }
+
+  .site-shell {
+    display: block;
   }
 
   .content {

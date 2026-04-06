@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Frank Tzanabetis share card</title>
+  <desc id="desc">Share card for Frank Tzanabetis, Senior Software Engineer.</desc>
+  <defs>
+    <linearGradient id="bg" x1="140" y1="50" x2="1020" y2="610" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0ecff" />
+      <stop offset="1" stop-color="#d7e3f4" />
+    </linearGradient>
+    <linearGradient id="panel" x1="220" y1="90" x2="960" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111827" />
+      <stop offset="1" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#0f172a" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="170" cy="105" r="180" fill="#2563eb" opacity="0.12" />
+  <circle cx="1090" cy="520" r="240" fill="#93c5fd" opacity="0.22" />
+  <circle cx="920" cy="120" r="90" fill="#1d4ed8" opacity="0.12" />
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="88" width="960" height="454" rx="34" fill="#ffffff" opacity="0.58" />
+    <rect x="140" y="108" width="920" height="414" rx="28" fill="url(#panel)" />
+  </g>
+
+  <g transform="translate(200 176)">
+    <text fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="7">
+      C#   .NET   AZURE   APIs
+    </text>
+    <text y="98" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="800">
+      Frank Tzanabetis
+    </text>
+    <text y="154" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="600">
+      Senior Software Engineer
+    </text>
+    <text y="236" fill="#dbeafe" font-family="Segoe UI, Arial, sans-serif" font-size="28">
+      Finance, government, healthcare, enterprise SaaS
+    </text>
+    <text y="280" fill="#dbeafe" font-family="Segoe UI, Arial, sans-serif" font-size="28">
+      Integrations, cloud platforms, distributed systems, modern delivery
+    </text>
+
+    <g transform="translate(0 340)">
+      <rect width="364" height="64" rx="32" fill="#2563eb" />
+      <text x="36" y="41" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">
+        frank.tzanabetis.com
+      </text>
+    </g>
+  </g>
+</svg>
