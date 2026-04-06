@@ -16,7 +16,7 @@
   --nav-link: #93c5fd;
   --nav-border: rgba(255, 255, 255, 0.08);
   --nav-hover: rgba(148, 163, 184, 0.12);
-  --surface-overlay: rgba(255, 255, 255, 0.88);
+  --surface-card: rgba(255, 255, 255, 0.96);
   --surface-border: rgba(255, 255, 255, 0.55);
   --focus-ring: #1d4ed8;
   --focus-ring-inverse: #bfdbfe;
@@ -182,9 +182,8 @@ a:focus-visible {
 .card {
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
-  background: var(--surface-overlay);
+  background: var(--surface-card);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
 }
 
 .card-pad {
@@ -440,7 +439,6 @@ li + li {
     border: 1px solid var(--line-print);
     background: var(--surface);
     box-shadow: none;
-    backdrop-filter: none;
   }
 
   .section {
