@@ -3,10 +3,23 @@
   --panel: #111827;
   --text: #172033;
   --muted: #475569;
+  --text-inverse: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+  --surface-soft-strong: #e2e8f0;
   --line: #dbe3ee;
+  --line-strong: #b8c7db;
+  --line-print: #d7dde5;
   --accent: #2563eb;
+  --accent-wash: rgba(37, 99, 235, 0.18);
   --nav-text: #cbd5e1;
   --nav-link: #93c5fd;
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --nav-hover: rgba(148, 163, 184, 0.12);
+  --surface-overlay: rgba(255, 255, 255, 0.88);
+  --surface-border: rgba(255, 255, 255, 0.55);
+  --focus-ring: #1d4ed8;
+  --focus-ring-inverse: #bfdbfe;
   --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
   --radius: 18px;
   --nav-width: 280px;
@@ -25,8 +38,8 @@ body {
   font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 30%),
-    linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+    radial-gradient(circle at top left, var(--accent-wash), transparent 30%),
+    linear-gradient(180deg, var(--surface-soft) 0%, var(--surface-soft-strong) 100%);
   line-height: 1.6;
 }
 
@@ -37,6 +50,12 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  text-decoration: none;
 }
 
 .site-shell {
@@ -53,7 +72,7 @@ a:hover {
   padding: 28px 20px;
   background: linear-gradient(180deg, var(--bg), var(--panel));
   color: var(--nav-text);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid var(--nav-border);
 }
 
 .nav-inner {
@@ -65,8 +84,14 @@ a:hover {
 .brand {
   display: block;
   margin-bottom: 28px;
-  color: #fff;
+  color: var(--text-inverse);
   text-decoration: none;
+}
+
+.brand:focus-visible,
+.side-nav nav a:focus-visible,
+.nav-footer a:focus-visible {
+  outline-color: var(--focus-ring-inverse);
 }
 
 .brand-name {
@@ -100,11 +125,15 @@ a:hover {
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
-.side-nav nav a:hover,
-.side-nav nav a:focus {
-  background: rgba(148, 163, 184, 0.12);
-  color: #fff;
+.side-nav nav a:hover {
+  background: var(--nav-hover);
+  color: var(--text-inverse);
   transform: translateX(2px);
+}
+
+.side-nav nav a:focus-visible {
+  background: var(--nav-hover);
+  color: var(--text-inverse);
 }
 
 .nav-footer {
@@ -112,7 +141,7 @@ a:hover {
   gap: 8px;
   margin-top: auto;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
   font-size: 0.94rem;
 }
 
@@ -128,9 +157,9 @@ a:hover {
 }
 
 .card {
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--surface-border);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--surface-overlay);
   box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
 }
@@ -207,21 +236,22 @@ h1 {
   padding: 11px 16px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #fff;
+  background: var(--surface);
   color: var(--text);
   font-weight: 600;
   text-decoration: none;
 }
 
-.button:hover {
-  border-color: #b8c7db;
+.button:hover,
+.button:focus-visible {
+  border-color: var(--line-strong);
   text-decoration: none;
 }
 
 .button.primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--text-inverse);
 }
 
 .section {
@@ -344,9 +374,28 @@ li + li {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .side-nav nav a:hover {
+    transform: none;
+  }
+}
+
 @media print {
   body {
-    background: #fff;
+    background: var(--surface);
   }
 
   .site-shell {
@@ -363,8 +412,8 @@ li + li {
   }
 
   .card {
-    border: 1px solid #d7dde5;
-    background: #fff;
+    border: 1px solid var(--line-print);
+    background: var(--surface);
     box-shadow: none;
     backdrop-filter: none;
   }
