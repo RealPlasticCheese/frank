@@ -55,11 +55,9 @@ function renderExperience(container, roles) {
   container.setAttribute("aria-busy", "false");
 }
 
-function setupMobileMenu() {
-  const sideNav = document.querySelector(".side-nav");
+function setupMobileMenu(sideNav, navLinks) {
   const menuToggle = sideNav?.querySelector(".menu-toggle");
   const mobileQuery = window.matchMedia("(max-width: 980px)");
-  const navLinks = Array.from(sideNav?.querySelectorAll('nav a[href^="#"]') ?? []);
 
   if (!sideNav || !menuToggle) {
     return;
@@ -121,9 +119,7 @@ function setupMobileMenu() {
   }
 }
 
-function setupSectionNav() {
-  const navLinks = Array.from(document.querySelectorAll('.side-nav nav a[href^="#"]'));
-
+function setupSectionNav(navLinks) {
   if (!navLinks.length) {
     return;
   }
@@ -169,6 +165,9 @@ function setupSectionNav() {
   sections.forEach((section) => observer.observe(section));
 }
 
-renderExperience(document.getElementById("experience-list"), window.recentRoles ?? []);
-setupMobileMenu();
-setupSectionNav();
+const sideNav = document.querySelector(".side-nav");
+const sectionNavLinks = Array.from(document.querySelectorAll('.side-nav nav a[href^="#"]'));
+
+renderExperience(document.getElementById("experience-list"), window.siteData?.recentRoles ?? []);
+setupMobileMenu(sideNav, sectionNavLinks);
+setupSectionNav(sectionNavLinks);

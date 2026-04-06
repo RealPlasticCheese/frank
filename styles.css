@@ -101,6 +101,7 @@ a:focus-visible {
   position: relative;
 }
 
+/* Shared nav header used by the desktop sidebar and compact mobile top bar. */
 .nav-header {
   display: flex;
   align-items: flex-start;
@@ -441,6 +442,7 @@ li + li {
   color: var(--muted);
 }
 
+/* Switch from the desktop sidebar to a compact top bar below desktop width. */
 @media (max-width: 980px) {
   .site-shell {
     grid-template-columns: 1fr;
@@ -476,6 +478,7 @@ li + li {
     display: inline-flex;
   }
 
+  /* Right-aligned flyout menu anchored under the hamburger button. */
   .nav-panel {
     display: none;
     position: absolute;
@@ -539,6 +542,7 @@ li + li {
     white-space: normal;
   }
 
+  /* Keep the flyout menu inside narrow phone viewports. */
   .nav-panel {
     width: min(300px, calc(100vw - 24px));
   }

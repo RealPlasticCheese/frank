@@ -1,4 +1,6 @@
-window.recentRoles = [
+window.siteData = window.siteData || {};
+
+window.siteData.recentRoles = [
   {
     company: "FinanceOne",
     title: "Senior Developer",
