@@ -1,4 +1,4 @@
-export const recentRoles = [
+window.recentRoles = [
   {
     company: "FinanceOne",
     title: "Senior Developer",

@@ -1,5 +1,3 @@
-import { recentRoles } from "./site-data.js";
-
 function createElement(tagName, options = {}) {
   const element = document.createElement(tagName);
 
@@ -57,6 +55,72 @@ function renderExperience(container, roles) {
   container.setAttribute("aria-busy", "false");
 }
 
+function setupMobileMenu() {
+  const sideNav = document.querySelector(".side-nav");
+  const menuToggle = sideNav?.querySelector(".menu-toggle");
+  const mobileQuery = window.matchMedia("(max-width: 980px)");
+  const navLinks = Array.from(sideNav?.querySelectorAll('nav a[href^="#"]') ?? []);
+
+  if (!sideNav || !menuToggle) {
+    return;
+  }
+
+  const setMenuOpen = (open) => {
+    sideNav.dataset.menuOpen = open ? "true" : "false";
+    menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
+  const closeMenu = () => setMenuOpen(false);
+
+  setMenuOpen(false);
+
+  menuToggle.addEventListener("click", () => {
+    if (!mobileQuery.matches) {
+      return;
+    }
+
+    setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        closeMenu();
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      mobileQuery.matches &&
+      sideNav.dataset.menuOpen === "true" &&
+      event.target instanceof Node &&
+      !sideNav.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && sideNav.dataset.menuOpen === "true") {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+
+  const syncMenuState = () => {
+    if (!mobileQuery.matches) {
+      closeMenu();
+    }
+  };
+
+  if (typeof mobileQuery.addEventListener === "function") {
+    mobileQuery.addEventListener("change", syncMenuState);
+  } else {
+    mobileQuery.addListener(syncMenuState);
+  }
+}
+
 function setupSectionNav() {
   const navLinks = Array.from(document.querySelectorAll('.side-nav nav a[href^="#"]'));
 
@@ -105,5 +169,6 @@ function setupSectionNav() {
   sections.forEach((section) => observer.observe(section));
 }
 
-renderExperience(document.getElementById("experience-list"), recentRoles);
+renderExperience(document.getElementById("experience-list"), window.recentRoles ?? []);
+setupMobileMenu();
 setupSectionNav();
