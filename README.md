@@ -12,7 +12,8 @@ This repository contains the static public profile site for myself.
 - `site-data.js` - Structured data for recent roles and achievements rendered by `site.js`.
 - `assets/logos/` - LinkedIn, StackOverflow, and GitHub logo assets used by the profile links.
 - `favicon.svg` - Browser favicon.
-- `og-image.svg` - Social sharing image.
+- `og-image.svg` - Source artwork for the social sharing image.
+- `og-image.png` - Raster social sharing image used by link previews.
 - `CNAME` - Custom domain configuration for GitHub Pages.
 
 ## Development
