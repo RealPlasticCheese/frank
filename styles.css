@@ -272,6 +272,49 @@ a:focus-visible {
   color: var(--nav-link);
 }
 
+.nav-social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--nav-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.nav-social-link:hover,
+.nav-social-link:focus-visible {
+  background: var(--nav-hover);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.nav-social-icon {
+  display: block;
+  height: auto;
+  object-fit: contain;
+}
+
+.nav-social-icon-linkedin {
+  width: 28px;
+}
+
+.nav-social-icon-stackoverflow {
+  width: 27px;
+}
+
+.nav-social-icon-github {
+  width: 27px;
+}
+
 .content {
   max-width: 1080px;
   width: 100%;
@@ -344,36 +387,48 @@ h1 {
   font-size: 1.05rem;
 }
 
-.hero-links {
+.hero-social-links {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 18px;
   margin-top: 24px;
 }
 
-.button {
+.hero-social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 16px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--text);
-  font-weight: 600;
+  min-height: 32px;
+  text-decoration: none;
+  opacity: 0.82;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.hero-social-link:hover,
+.hero-social-link:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
   text-decoration: none;
 }
 
-.button:hover,
-.button:focus-visible {
-  border-color: var(--line-strong);
-  text-decoration: none;
+.hero-social-logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.button.primary {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--text-inverse);
+.hero-social-logo-linkedin {
+  width: 84px;
+}
+
+.hero-social-logo-stackoverflow {
+  width: 158px;
+}
+
+.hero-social-logo-github {
+  width: 88px;
 }
 
 .section {
@@ -600,7 +655,7 @@ li + li {
     break-inside: avoid;
   }
 
-  .button {
+  .hero-social-links {
     display: none;
   }
 }
