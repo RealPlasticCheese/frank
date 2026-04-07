@@ -2,13 +2,13 @@
 
 Live site: [frank.tzanabetis.com](https://frank.tzanabetis.com/)
 
-This repository contains the static public profile site for Frank Tzanabetis.
+This repository contains the static public profile site for myself.
 
 ## Structure
 
 - `index.html` - Main page markup, metadata, navigation, and content sections.
 - `styles.css` - Site layout, responsive navigation, typography, cards, and print styles.
-- `site.js` - Client-side behavior for rendering experience data, mobile navigation, and active section highlighting.
+- `site.js` - Client-side behaviour for rendering experience data, mobile navigation, and active section highlighting.
 - `site-data.js` - Structured data for recent roles and achievements rendered by `site.js`.
 - `assets/logos/` - LinkedIn, StackOverflow, and GitHub logo assets used by the profile links.
 - `favicon.svg` - Browser favicon.
